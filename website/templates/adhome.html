@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Chores{% endblock %} {% block content%}
+<h1 align="center">Chores</h1>
+<ul class="list-group list-group-flush" id="notes">
+   {% for chore in user.chores %}
+   <li class="list-group-item">
+      {{ chore.data }}
+      <button type="button" class="close" onClick= "deleteNote({{ chore.id }})">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </li>
+   {% endfor %}
+</ul>
+<form method="POST">
+   <textarea name="chore" id="chore" class="form-control"></textarea>
+   <br />
+   <div align="center">
+      <button type="submit" class="btn btn-primary">Add Chore</button>
+   </div>
+</form>
+{% endblock %}
