@@ -28,13 +28,13 @@ def adhome():
     return render_template("adhome.html", user=current_user)
 
 
-@views.route('/delete-note', methods=['POST'])
+@views.route('/delete-chore', methods=['POST'])
 def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Chore.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+    chore = json.loads(request.data)
+    choreId = chore['choreId']
+    chore = Chore.query.get(choreId)
+    if chore:
+        if chore.user_id == current_user.id:
+            db.session.delete(chore)
             db.session.commit()
     return jsonify({})

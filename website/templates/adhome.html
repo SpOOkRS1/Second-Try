@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% block title %}Chores{% endblock %} {% block content%}
 <h1 align="center">Chores</h1>
 <ul class="list-group list-group-flush" id="notes">
-   {% for chore in user.chores %}
+   {% for chores in user.chores %}
    <li class="list-group-item">
-      {{ chore.data }}
-      <button type="button" class="close" onClick= "deleteNote({{ chore.id }})">
+      {{ chores.data }}
+      <button type="button" class="close">
       <span aria-hidden="true">&times;</span>
       </button>
    </li>
