@@ -27,6 +27,22 @@ def adhome():
 
     return render_template("adhome.html", user=current_user)
 
+@views.route('/admaid', methods=['GET', 'POST'])
+@login_required
+def admaid():
+    if request.method == 'POST':
+        maid = request.form.get('maid')
+
+        if len(maid) < 1:
+            flash('Maid name is too short!', category='error')
+        else:
+            new_maid = Chore(maid=maid, user_id=current_user.id)
+            db.session.add(new_maid)
+            db.session.commit()
+            flash('Maid added!', category='success')
+
+    return render_template("admaid.html", user=current_user)
+
 
 @views.route('/delete-chore', methods=['POST'])
 def delete_note():

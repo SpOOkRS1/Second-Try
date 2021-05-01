@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Maids{% endblock %} {% block content%}
+<h1 align="center">Maids</h1>
+<ul class="list-group list-group-flush" id="notes">
+   {% for maids in user.chores %}
+   <li class="list-group-item">
+      {{ maids.maid}}
+      <button type="button" class="close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </li>
+   {% endfor %}
+</ul>
+<form method="POST">
+   <textarea name="maid" id="maid" class="form-control"></textarea>
+   <br />
+   <div align="center">
+      <button type="submit" class="btn btn-primary">Add Maid</button>
+   </div>
+</form>
+{% endblock %}
