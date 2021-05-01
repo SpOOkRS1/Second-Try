@@ -3,6 +3,7 @@
 <ul class="list-group list-group-flush" id="notes">
    {% for chores in user.chores %}
    <li class="list-group-item">
+<!-- chore.data needed to be chore's'.data with an 's' at the end -_- -->
       {{ chores.data }}
       <button type="button" class="close">
       <span aria-hidden="true">&times;</span>
