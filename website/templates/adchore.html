@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}Chores{% endblock %} {% block content%}
 <h1 align="center">Chores</h1>
 <ul class="list-group list-group-flush" id="notes">
-   {% for chores in user.chores %}
+   {% for chore in query %}
    <li class="list-group-item">
-      {{ chores.data }}
+      {{ chore.chore }}
       <button type="button" class="close">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -16,5 +16,9 @@
    <div align="center">
       <button type="submit" class="btn btn-primary">Add Chore</button>
    </div>
+   <br>
 </form>
+<div align="center">
+   <button class="btn btn-primary">Auto-assign</button>
+</div>
 {% endblock %}

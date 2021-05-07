@@ -4,5 +4,20 @@
 <br>
 <br>
 <p align="center">Hello Maids, get to work</p>
-<center><button>Login</button></center>
+<table class="table">
+   <thead>
+      <tr>
+         <th scope="col">Maid</th>
+         <th scope="col">Chore</th>
+      </tr>
+   </thead>
+   <tbody>
+      {%for chores in user.chores %}
+      <tr>
+         <th scope="row">Anthony</th>
+         <td>{{ chores.data }}</td>
+      </tr>
+      {%endfor%}
+   </tbody>
+</table>
 {% endblock %}
