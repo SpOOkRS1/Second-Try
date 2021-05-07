@@ -9,7 +9,7 @@ views = Blueprint('views', __name__)
 @views.route('/')
 def home():
   
-  return render_template("home.html", user=current_user)
+  return render_template("home.html", user=current_user, cquery=Chore.query.all(), mquery=Maid.query.all())
 
 @views.route('/adchore', methods=['GET', 'POST'])
 @login_required
@@ -25,7 +25,7 @@ def adchore():
             db.session.commit()
             flash('Chore added!', category='success')
 
-    return render_template("adchore.html", user=current_user, query=Chore.query.all())
+    return render_template("adchore.html", user=current_user, cquery=Chore.query.all())
 
 @views.route('/admaid', methods=['GET', 'POST'])
 @login_required
@@ -41,7 +41,7 @@ def admaid():
             db.session.commit()
             flash('Maid added!', category='success')
 
-    return render_template("admaid.html", user=current_user, query=Maid.query.all())
+    return render_template("admaid.html", user=current_user, mquery=Maid.query.all())
 
 
 @views.route('/delete-chore', methods=['POST'])

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Chores{% endblock %} {% block content%}
 <h1 align="center">Chores</h1>
 <ul class="list-group list-group-flush" id="notes">
-   {% for chore in query %}
+   {% for chore in cquery %}
    <li class="list-group-item">
       {{ chore.chore }}
       <button type="button" class="close">

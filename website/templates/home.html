@@ -1,21 +1,28 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} 
 {% block content%}
-<h1 align="center">Welcome to the Chore app!</h1>
 <br>
 <br>
-<p align="center">Hello Maids, get to work</p>
+<h1 align="center">January</h1>
+<br>
+<p align="center">Hello Maids, get to work.</p>
+<br>
+<br>
 <table class="table">
    <thead>
       <tr>
-         <th scope="col">Maid</th>
-         <th scope="col">Chore</th>
+         <th scope="col" style = "font-size: 20px">Maid</th>
+         <th scope="col" style = "font-size: 20px">Chore</th>
       </tr>
    </thead>
    <tbody>
-      {%for chores in user.chores %}
+      {% for maids in mquery %}
       <tr>
-         <th scope="row">Anthony</th>
-         <td>{{ chores.data }}</td>
+         <th scope="row">{{maids.maid}}</th>
+         {% for chores in cquery %}
+
+         <td>{{chores.chore}}</td>
+         
+         {%endfor%}
       </tr>
       {%endfor%}
    </tbody>
