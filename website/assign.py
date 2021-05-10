@@ -7,6 +7,8 @@ maids = {
     "Donte" : "None",
     "Aaron" : "NuN",
 }
+
+# Set maid id equal to chore id to start chore rotation
 maids["Anthony"] = chores[0]
 maids["Donte"] = chores[1]
 maids["Aaron"] = chores[2]
@@ -17,6 +19,7 @@ for maid, chore in maids.items():
 print()
 print()
 
+# Set maid id equal to the next chore id to continue rotation
 print("Next month set of chores:")
 print("___________________")
 if dai.day == 10:
@@ -28,3 +31,6 @@ if dai.day == 10:
   for maid, chore in maids.items():
     print(f"Maid: {maid} / Chore: {next(chore_cycle)}")
   print()
+
+else:
+  print("No celebration today :(")
