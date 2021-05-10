@@ -2,29 +2,30 @@
 {% block content%}
 <br>
 <br>
-<h1 align="center">January</h1>
-<br>
-<p align="center">Hello Maids, get to work.</p>
-<br>
-<br>
-<table class="table">
-   <thead>
-      <tr>
-         <th scope="col" style = "font-size: 20px">Maid</th>
-         <th scope="col" style = "font-size: 20px">Chore</th>
-      </tr>
-   </thead>
-   <tbody>
-      {% for maids in mquery %}
-      <tr>
-         <th scope="row">{{maids.maid}}</th>
-         {% for chores in cquery %}
-
-         <td>{{chores.chore}}</td>
-         
+<div align = "center">
+   <h1 align="center">January</h1>
+   <br>
+   <p align="center">Hello Maids, get to work.</p>
+   <br>
+   <br>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col" style = "font-size: 20px">Maid</th>
+            <th scope="col" style = "font-size: 20px">Chore</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for maids in mquery %}
+         <tr>
+            <th scope="row">{{maids.maid}}</th>
+            {% for chores in cquery %}
+            <td>{{chores.chore}}</td>
+            {%endfor%}
+         </tr>
          {%endfor%}
-      </tr>
-      {%endfor%}
-   </tbody>
-</table>
+      </tbody>
+   </table>
+   <a href="#">Requirements</a>
+</div>
 {% endblock %}
