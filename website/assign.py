@@ -1,5 +1,3 @@
-from .models import Chore, Maid
-from . import db
 import datetime
 import itertools
 dai = datetime.datetime.today()

@@ -40,10 +40,13 @@ def admaid():
         if len(maid) < 1:
             flash('Maid name is too short!', category='error')
         else:
-            new_maid = Maid(maid=maid)
-            db.session.add(new_maid)
-            db.session.commit()
-            flash('Maid added!', category='success')
+            maidDic = {}
+            maidDic[maid] = ""
+            for maid, chore_value in maidDic.items():
+              new_maid = Maid(maid=maid)
+              db.session.add(new_maid)
+              db.session.commit()
+              flash('Maid added!', category='success')
 
     return render_template("admaid.html", user=current_user, mquery=Maid.query.all())
 
