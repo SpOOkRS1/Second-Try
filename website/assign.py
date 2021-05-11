@@ -1,3 +1,5 @@
+from .models import Chore, Maid
+from . import db
 import datetime
 import itertools
 dai = datetime.datetime.today()
@@ -34,3 +36,6 @@ if dai.day == 10:
 
 else:
   print("No celebration today :(")
+
+
+print('Hello world!!!')
