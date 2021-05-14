@@ -10,7 +10,7 @@ views = Blueprint('views', __name__)
 @views.route('/')
 def home():
   
-  return render_template("home.html", user=current_user, cquery=Chore.query.all(), mquery=Maid.query.all())
+  return render_template("home.html", user=current_user, maids_chores = maids_chores)
 
 @views.route('/adchore', methods=['GET', 'POST'])
 @login_required
@@ -32,25 +32,26 @@ def adchore():
 
     return render_template("adchore.html", user=current_user, cquery=Chore.query.all())
 
+maids_chores = {}
 @views.route('/admaid', methods=['GET', 'POST'])
 @login_required
 def admaid():
     if request.method == 'POST':
-        maid = request.form.get('maid')
-        maid = maid.capitalize()
+        maidLi = []
+        maid = request.form.get('maid').capitalize()
+        maidLi.append(maid)
 
         if len(maid) < 1:
             flash('Maid name is too short!', category='error')
         else:
-            maidDic = {}
-            maidDic[maid] = ""
-            for maid, chore_value in maidDic.items():
+            for maid in maidLi:
+              maids_chores[maid] = ''
               new_maid = Maid(maid=maid)
               db.session.add(new_maid)
               db.session.commit()
               flash('Maid added!', category='success')
 
-    return render_template("admaid.html", user=current_user, mquery=Maid.query.all(), maidDic = maidDic)
+    return render_template("admaid.html", user=current_user, maids_chores = maids_chores)
 
 
 @views.route('/delete-chore', methods=['POST'])
