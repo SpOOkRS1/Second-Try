@@ -12,23 +12,23 @@ def home():
   
   return render_template("home.html", user=current_user, maids_chores = maids_chores)
 
+
+# add chores to the dictionary
+choreLi = []
 @views.route('/adchore', methods=['GET', 'POST'])
 @login_required
 def adchore():
     if request.method == 'POST':
-      chore = request.form.get('chore')
-      chore = chore.capitalize()
+      chore = request.form.get('chore').capitalize()
+      choreLi.append(chore)
 
       if len(chore) < 1:
         flash('Chore is too short!', category='error')
       else:
-        choreLi = []
-        choreLi.append(chore)
-        for chore in choreLi:
-          new_chore = Chore(chore=chore)
-          db.session.add(new_chore)
-          db.session.commit()
-          flash('Chore added!', category='success')
+        new_chore = Chore(chore=chore)
+        db.session.add(new_chore)
+        db.session.commit()
+        flash('Chore added!', category='success')
 
     return render_template("adchore.html", user=current_user, cquery=Chore.query.all())
 
