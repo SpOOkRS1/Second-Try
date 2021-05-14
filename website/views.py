@@ -17,6 +17,7 @@ def home():
 def adchore():
     if request.method == 'POST':
       chore = request.form.get('chore')
+      chore = chore.capitalize()
 
       if len(chore) < 1:
         flash('Chore is too short!', category='error')
@@ -36,6 +37,7 @@ def adchore():
 def admaid():
     if request.method == 'POST':
         maid = request.form.get('maid')
+        maid = maid.capitalize()
 
         if len(maid) < 1:
             flash('Maid name is too short!', category='error')
@@ -48,7 +50,7 @@ def admaid():
               db.session.commit()
               flash('Maid added!', category='success')
 
-    return render_template("admaid.html", user=current_user, mquery=Maid.query.all())
+    return render_template("admaid.html", user=current_user, mquery=Maid.query.all(), maidDic = maidDic)
 
 
 @views.route('/delete-chore', methods=['POST'])

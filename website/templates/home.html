@@ -16,12 +16,10 @@
          </tr>
       </thead>
       <tbody>
-         {% for maids in mquery %}
+         {% for maid, chore in maidDic.items() %}
          <tr>
-            <th scope="row">{{maids.maid}}</th>
-            {% for chores in cquery %}
-            <td>{{chores.chore}}</td>
-            {%endfor%}
+            <th scope="row">{{maid}}</th>
+            <td>{{chore}}</td>
          </tr>
          {%endfor%}
       </tbody>
