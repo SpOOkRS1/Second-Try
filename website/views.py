@@ -9,49 +9,41 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-  
-  return render_template("home.html", user=current_user, maids_chores = maids_chores)
+  currentMonth = datetime.datetime.now()
+  thisMonth = currentMonth.strftime("%B")
+  return render_template("home.html", user=current_user, cquery=Chore.query.all(), mquery=Maid.query.all(), thisMonth = thisMonth)
 
-
-# add chores to the dictionary
-choreLi = []
 @views.route('/adchore', methods=['GET', 'POST'])
 @login_required
 def adchore():
     if request.method == 'POST':
-      chore = request.form.get('chore').capitalize()
-      choreLi.append(chore)
+        chore = request.form.get('chore')
 
-      if len(chore) < 1:
-        flash('Chore is too short!', category='error')
-      else:
-        new_chore = Chore(chore=chore)
-        db.session.add(new_chore)
-        db.session.commit()
-        flash('Chore added!', category='success')
+        if len(chore) < 1:
+            flash('Chore is too short!', category='error')
+        else:
+            new_chore = Chore(chore=chore)
+            db.session.add(new_chore)
+            db.session.commit()
+            flash('Chore added!', category='success')
 
     return render_template("adchore.html", user=current_user, cquery=Chore.query.all())
 
-maids_chores = {}
 @views.route('/admaid', methods=['GET', 'POST'])
 @login_required
 def admaid():
     if request.method == 'POST':
-        maidLi = []
-        maid = request.form.get('maid').capitalize()
-        maidLi.append(maid)
+        maid = request.form.get('maid')
 
         if len(maid) < 1:
             flash('Maid name is too short!', category='error')
         else:
-            for maid in maidLi:
-              maids_chores[maid] = ''
-              new_maid = Maid(maid=maid)
-              db.session.add(new_maid)
-              db.session.commit()
-              flash('Maid added!', category='success')
+            new_maid = Maid(maid=maid)
+            db.session.add(new_maid)
+            db.session.commit()
+            flash('Maid added!', category='success')
 
-    return render_template("admaid.html", user=current_user, maids_chores = maids_chores)
+    return render_template("admaid.html", user=current_user, mquery=Maid.query.all())
 
 
 @views.route('/delete-chore', methods=['POST'])

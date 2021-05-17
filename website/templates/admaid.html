@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}Maids{% endblock %} {% block content%}
 <h1 align="center">Maids</h1>
 <ul class="list-group list-group-flush" id="notes">
-   {% for maid, chore in maids_chores.items() %}
+   {% for maid in mquery %}
    <li class="list-group-item">
-      {{maid}}
+      {{ maid.maid}}
       <button type="button" class="close">
       <span aria-hidden="true">&times;</span>
       </button>
