@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block title %}Create Announcement{% endblock %} 
+{% block content%}
+<br>
+<br>
+<div align = "center">
+   <h1 align="center">{{thisMonth}}</h1>
+   <br>
+   <br>
+   <br>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col" style = "font-size: 20px">Date</th>
+            <th scope="col" style = "font-size: 20px">Announcement</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for announce in annList %}
+         <tr>
+            <th scope="row">{{ currDate }}</th>
+            <td>{{announce.announcement}} </td>
+         </tr>
+         {%endfor%}
+      </tbody>
+   </table>
+   <br>
+   <form action= "{{url_for('views.clearTable')}}">
+     <button type="submit" class="btn btn-primary">Clear Table</button>
+   </form>
+</div>
+<hr>
+<br>
+<h4 align="center">Create Announcement</h4>
+<form method ="POST">
+   <div class="form-group mb-2">
+      <label  for="maid name">Announcement: </label>
+      <textarea name="announcement" id="announcement" class="form-control"></textarea>
+   </div>
+   <div align="center">
+      <button type="submit" class="btn btn-primary">Add</button>
+   </div>
+</form>
+<br>
+<br>
+{% endblock %}

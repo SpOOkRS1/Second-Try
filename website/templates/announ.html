@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}ATTN{% endblock %} 
+{% block content%}
+<br>
+<br>
+<div align = "center">
+   <h1 align="center">{{thisMonth}}</h1>
+   <br>
+   <p align="center">Announcements</p>
+   <br>
+   <br>
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col" style = "font-size: 20px">Date</th>
+            <th scope="col" style = "font-size: 20px">Announcement</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for announcement in annList %}
+         <tr>
+            <th scope="row">{{ currDate }}</th>
+            <td>{{announcement.announcement}}</td>
+         {%endfor%}
+         </tr>
+      </tbody>
+   </table>
+</div>
+<br>
+<br>
+{% endblock %}
