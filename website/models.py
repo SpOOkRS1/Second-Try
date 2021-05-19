@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(150), unique=True)
   password = db.Column(db.String(150))
   firstName = db.Column(db.String(150))
+  announcement = db.Column(db.String(100000))
 
 class Maid(db.Model):
   id = db.Column(db.Integer, primary_key=True)
