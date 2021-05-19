@@ -57,6 +57,6 @@ def adsign_up():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category = 'success')
-            return redirect(url_for('views.adchore'))
+            return redirect(url_for('views.add'))
 
     return render_template('adsign_up.html', user=current_user)

@@ -16,16 +16,16 @@
          </tr>
       </thead>
       <tbody>
-         {% for maids in mquery %}
+         {% for maid in mquery %}
          <tr>
-            <th scope="row">{{maids.maid}}</th>
-            {% for chores in cquery %}
-            <td>{{chores.chore}}</td>
-            {%endfor%}
-         </tr>
+            <th scope="row">{{maid.maid}}</th>
+            <td>{{maid.chore}}</td>
          {%endfor%}
+         </tr>
       </tbody>
    </table>
    <a href="#">Requirements</a>
 </div>
+<br>
+<br>
 {% endblock %}
