@@ -18,28 +18,31 @@
          {% for maid in mquery %}
          <tr>
             <th scope="row">{{maid.maid}}</th>
-            <td>{{maid.chore}}</td>
+            <td>{{maid.chore}} </td>
          </tr>
          {%endfor%}
       </tbody>
    </table>
+   <br>
+   <form action= "{{url_for('views.clearTable')}}">
+     <button type="submit" class="btn btn-primary">Clear Table</button>
+   </form>
 </div>
 <hr>
 <br>
 <h4 align="center">Add maids & chores</h4>
 <form method ="POST">
-  <div class="form-group mb-2">
-    <label  for="maid name">Maid name: </label>
-    <input  class="form-control"type="text" name="maid">
-  </div>
-  
-  <div class="form-group mb-2">
-    <label  for="maid chore">Chore: </label>
-    <input  class="form-control"type="text" name="chore">
-  </div>
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add</button>
-  </div>
+   <div class="form-group mb-2">
+      <label  for="maid name">Maid name: </label>
+      <input  class="form-control"type="text" name="maid">
+   </div>
+   <div class="form-group mb-2">
+      <label  for="maid chore">Chore: </label>
+      <input  class="form-control"type="text" name="chore">
+   </div>
+   <div align="center">
+      <button type="submit" class="btn btn-primary">Add</button>
+   </div>
 </form>
 <br>
 <br>
