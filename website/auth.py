@@ -19,7 +19,7 @@ def adlogin():
 			if check_password_hash(user.password, password):
 				flash('Logged in successfully!', category='success')
 				login_user(user, remember=True)
-				return redirect(url_for('views.add'))
+				return redirect(url_for('views.home'))
 			else:
 				flash('Inncorrect password', category='error')
 		else:
