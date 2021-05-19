@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Maid, User
+from .models import Maid, User, Announcement
 from . import db
 import json
 import datetime
@@ -14,16 +14,17 @@ def home():
   return render_template("home.html", user=current_user, mquery=Maid.query.all(), thisMonth = thisMonth)
 
 @views.route('/announcements')
-def ATTN():
+def announcements():
   currentMonth = datetime.datetime.now()
   thisMonth = currentMonth.strftime("%B")
   currentDate = datetime.datetime.now()
   currDate = currentDate.strftime("%b, %d")
-  return render_template("announ.html", user=current_user, annList=User.query.all(), thisMonth = thisMonth, currDate = currDate)
+  
+  return render_template("announcements.html", user=current_user, annList= Announcement.query.all(), thisMonth = thisMonth, currDate = currDate)
 
-@views.route('/add', methods=['GET', 'POST', 'DELETE'])
+@views.route('/chores', methods=['GET', 'POST', 'DELETE'])
 @login_required
-def add():
+def chores():
     currentMonth = datetime.datetime.now()
     thisMonth = currentMonth.strftime("%B")
     if request.method == 'POST':
@@ -41,12 +42,12 @@ def add():
         db.session.add(newMaid)
         db.session.commit()
 
-    return render_template("add.html", user=current_user, mquery=Maid.query.all(), thisMonth = thisMonth)
+    return render_template("chores.html", user=current_user, mquery=Maid.query.all(), thisMonth = thisMonth)
 
 
-@views.route('/create', methods=['GET', 'POST', 'DELETE'])
+@views.route('/announce', methods=['GET', 'POST', 'DELETE'])
 @login_required
-def create():
+def announce():
     currentMonth = datetime.datetime.now()
     thisMonth = currentMonth.strftime("%B")
     currentDate = datetime.datetime.now()
@@ -58,17 +59,28 @@ def create():
         flash('Chore is too short!', category='error')
       
       else:
-        newAnn = User(announcement=announcement)
+        newAnn = Announcement(announcement=announcement)
         db.session.add(newAnn)
         db.session.commit()
 
-    return render_template("createAnnoun.html", user=current_user, annList=User.query.all(), thisMonth = thisMonth, currDate = currDate)
+    return render_template("announce.html", user=current_user, annList=Announcement.query.all(), thisMonth = thisMonth, currDate = currDate)
 
 
-@views.route('/clear', methods=['GET', 'POST', 'DELETE'])
-def clearTable():
+@views.route('/clearch', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def clearch():
   if request.method == 'POST':
     Maid.query.delete()
     db.session.commit()
-    return redirect(url_for('views.add'))
-  return render_template('clear.html', flash="Table was cleared.",mquery=Maid.query.all())
+    return redirect(url_for('views.chores'))
+  return render_template('clearChores.html', flash="Table was cleared.",mquery=Maid.query.all())
+
+
+@views.route('/clearan', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def clearan():
+  if request.method == 'POST':
+    Announcement.query.delete()
+    db.session.commit()
+    return redirect(url_for('views.announce'))
+  return render_template('clearAnnouncements.html', flash="Table was cleared.")

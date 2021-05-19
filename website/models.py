@@ -20,4 +20,10 @@ def __init__(self,maid,chore):
   self.chore= chore
   
 def __repr__(self):
-  return (f"MAID: {self.maid}      CHORE:{self.chore}")
+  return (f"MAID: {self.maid}      CHORE:{self.chore}     ")
+
+
+class Announcement(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  announcement = db.Column(db.String(100000))
+

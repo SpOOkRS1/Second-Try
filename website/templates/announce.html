@@ -2,9 +2,24 @@
 {% block content%}
 <br>
 <br>
-<div align = "center">
+<div>
    <h1 align="center">{{thisMonth}}</h1>
    <br>
+   <br>
+   <br>
+   <h4 align="center">Create an announcement</h4>
+   <form method ="POST">
+      <div class="form-group mb-2">
+         <label  for="maid name">Announcement: </label>
+         <textarea name="announcement" id="announcement" class="form-control"></textarea>
+      </div>
+      <div>
+         <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+   </form>
+   <br>
+   <br>
+   <hr>
    <br>
    <br>
    <table class="table">
@@ -24,22 +39,9 @@
       </tbody>
    </table>
    <br>
-   <form action= "{{url_for('views.clearTable')}}">
-     <button type="submit" class="btn btn-primary">Clear Table</button>
+   <form action= "{{url_for('views.clearan')}}">
+      <button type="submit" class="btn btn-primary">Clear Table</button>
    </form>
 </div>
-<hr>
-<br>
-<h4 align="center">Create Announcement</h4>
-<form method ="POST">
-   <div class="form-group mb-2">
-      <label  for="maid name">Announcement: </label>
-      <textarea name="announcement" id="announcement" class="form-control"></textarea>
-   </div>
-   <div align="center">
-      <button type="submit" class="btn btn-primary">Add</button>
-   </div>
-</form>
-<br>
 <br>
 {% endblock %}
