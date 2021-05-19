@@ -22,6 +22,11 @@ def announcements():
   
   return render_template("announcements.html", user=current_user, annList= Announcement.query.all(), thisMonth = thisMonth, currDate = currDate)
 
+@views.route('/requirements')
+def requirements():
+  
+  return render_template("requirements.html", user=current_user)
+
 @views.route('/chores', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def chores():
